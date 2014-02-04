@@ -6,5 +6,5 @@ Render views of collections of models in backbone, without writing a lot of tedi
 Contributors
 ======
 
-[Josh Campbell](http://github.com/joshcampbell)
-[Alex Williams](http://github.com/Robovirtuoso)
+- [Josh Campbell](http://github.com/joshcampbell)
+- [Alex Williams](http://github.com/Robovirtuoso)
