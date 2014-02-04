@@ -9,4 +9,4 @@ global._ = global.Underscore = require "underscore"
 global.Backbone = require "backbone"
 global.Backbone.$ = global.$
 
-global.Bifida = require "../src/bifida.js"
+global.Marowak = require "../src/marowak.js"

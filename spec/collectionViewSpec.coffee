@@ -1,17 +1,35 @@
-describe "Bifida.CollectionView", ->
+describe "Marowak.CollectionView", ->
 
   beforeEach ->
     @memberView = Backbone.View.extend({
       tagName: "li"
       render: ->
-        @el.innerText = @model.get "foo"
+        @$el.data("cid": @model.cid)
+        @el.innerHTML = @model.get "foo"
         @
     })
     @rawModelJson = [ { "foo": "bar" }, { "foo": "baz" } ]
     @collection = new Backbone.Collection(@rawModelJson)
-    @cv = new Bifida.CollectionView
+    @cv = new Marowak.CollectionView
       memberView: @memberView
       collection: @collection
+
+  describe "#append", ->
+
+    it "renders a single view for a given model", ->
+      @cv.append new Backbone.Model foo: 'New Item'
+
+      expect(@cv.el.innerHTML).toMatch(/New Item/)
+
+  describe "#removeChild", ->
+
+    it "remove the view from the dom", ->
+      model = new Backbone.Model foo: 'kung'
+      @cv.append model
+      @cv.removeChild(model)
+
+      expect(@cv.el.innerHTML).not.toMatch(/kung/)
+
 
   describe "#render", ->
 
