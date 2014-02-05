@@ -1,7 +1,7 @@
 describe "Marowak.CollectionView", ->
 
   beforeEach ->
-    @memberView = Backbone.View.extend({
+    @view = Backbone.View.extend({
       tagName: "li"
       render: ->
         @$el.data("cid": @model.cid)
@@ -11,7 +11,7 @@ describe "Marowak.CollectionView", ->
     @rawModelJson = [ { "foo": "bar" }, { "foo": "baz" } ]
     @collection = new Backbone.Collection(@rawModelJson)
     @cv = new Marowak.CollectionView
-      memberView: @memberView
+      view: @view
       collection: @collection
 
   describe "#append", ->
@@ -63,17 +63,17 @@ describe "Marowak.CollectionView", ->
       memberElements = @cv._memberElements()
       expect(memberElements[0] instanceof window.HTMLElement).toBeTruthy()
 
-  describe "#_memberViews", ->
+  describe "#_views", ->
 
     it "returns an array entry for each model in the collection", ->
-      memberViews = @cv._memberViews()
-      expect(memberViews.length).toEqual(@rawModelJson.length)
+      views = @cv._views()
+      expect(views.length).toEqual(@rawModelJson.length)
 
     it "renders each member view", ->
-      render_spy = spyOn(@memberView.prototype, "render").andCallThrough()
-      memberViews = @cv._memberViews()
+      render_spy = spyOn(@view.prototype, "render").andCallThrough()
+      views = @cv._views()
       expect(render_spy.calls.length).toEqual(@rawModelJson.length)
 
-    it "returns an array of @memberViews", ->
-      memberViews = @cv._memberViews()
-      expect(memberViews[0] instanceof @memberView).toBeTruthy()
+    it "returns an array of @views", ->
+      views = @cv._views()
+      expect(views[0] instanceof @view).toBeTruthy()

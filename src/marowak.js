@@ -32,7 +32,7 @@ Marowak.ViewCache = (function() {
 Marowak.CollectionView = Backbone.View.extend({
 
   initialize: function(options) {
-    this.memberView = options.memberView;
+    this.view = options.view;
     this._cache = new Marowak.ViewCache()
     this.listenTo(this.collection, "add", function(model){
       this.append(model)
@@ -44,7 +44,7 @@ Marowak.CollectionView = Backbone.View.extend({
 
   append: function(model) {
     this.el.appendChild(
-      this._memberViewFor(model).render().el
+      this._viewFor(model).render().el
     )
   },
 
@@ -62,8 +62,8 @@ Marowak.CollectionView = Backbone.View.extend({
     return this
   },
 
-  _memberViewFor: function(model) {
-    view = new this.memberView({model: model})
+  _viewFor: function(model) {
+    view = new this.view({model: model})
     this._cache.add(model.cid, view)
 
     return view
@@ -81,14 +81,14 @@ Marowak.CollectionView = Backbone.View.extend({
   },
 
   _memberElements: function() {
-    return _.pluck(this._memberViews(), "el")
+    return _.pluck(this._views(), "el")
   },
 
-  _memberViews: function() {
+  _views: function() {
     var _this = this
 
     return this.collection.map(function(model) {
-        return _this._memberViewFor(model).render()
+        return _this._viewFor(model).render()
       }
     )
   }
