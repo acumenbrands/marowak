@@ -30,6 +30,12 @@ Marowak.CollectionView = Backbone.View.extend({
   initialize: function(options) {
     this.memberView = options.memberView;
     this._cache = new Marowak.ViewCache()
+    this.listenTo(this.collection, "add", function(model){
+      this.append(model)
+    })
+    this.listenTo(this.collection, "remove", function(model){
+      this.removeChild(model)
+    })
   },
 
   append: function(model) {
@@ -84,6 +90,6 @@ Marowak.CollectionView = Backbone.View.extend({
 
 })
 
-if (module && module.exports) {
+if (typeof module != "undefined" && module.exports) {
   module.exports = Marowak
 }
