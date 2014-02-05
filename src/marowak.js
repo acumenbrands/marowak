@@ -19,6 +19,10 @@ Marowak.ViewCache = (function() {
 
     remove: function(id) {
       delete this.cache[id]
+    },
+
+    clear: function(){
+      this.cache = {}
     }
   }
 
@@ -53,6 +57,7 @@ Marowak.CollectionView = Backbone.View.extend({
 
   render: function() {
     this.el.innerHTML = ""
+    this._cache.clear()
     this.el.appendChild(this._membersFragment())
     return this
   },
