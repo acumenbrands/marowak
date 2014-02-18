@@ -30,6 +30,7 @@ Marowak.ViewCache = (function() {
 })();
 
 Marowak.CollectionView = Backbone.View.extend({
+  tagName: "ul",
 
   initialize: function(options) {
     this.view = options.view;
