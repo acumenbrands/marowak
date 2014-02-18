@@ -39,7 +39,7 @@ Marowak.CollectionView = Backbone.View.extend({
       this.append(model)
     })
     this.listenTo(this.collection, "remove", function(model){
-      this.removeChild(model)
+      this.render()
     })
   },
 
@@ -47,13 +47,6 @@ Marowak.CollectionView = Backbone.View.extend({
     this.el.appendChild(
       this._viewFor(model).render().el
     )
-  },
-
-  removeChild: function(model) {
-    var id = model.cid
-
-    this._cache.fetch(id).$el.remove()
-    this._cache.remove(id)
   },
 
   render: function() {

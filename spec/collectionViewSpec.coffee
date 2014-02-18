@@ -21,16 +21,6 @@ describe "Marowak.CollectionView", ->
 
       expect(@cv.el.innerHTML).toMatch(/New Item/)
 
-  describe "#removeChild", ->
-
-    it "remove the view from the dom", ->
-      model = new Backbone.Model foo: 'kung'
-      @cv.append model
-      @cv.removeChild(model)
-
-      expect(@cv.el.innerHTML).not.toMatch(/kung/)
-
-
   describe "#render", ->
 
     it "appends the document fragment to its own el", ->
