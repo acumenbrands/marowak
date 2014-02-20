@@ -33,7 +33,9 @@ Marowak.CollectionView = Backbone.View.extend({
   tagName: "ul",
 
   initialize: function(options) {
-    this.view = options.view;
+    if(typeof options.view != "undefined"){
+      this.view = options.view;
+    }
     this._cache = new Marowak.ViewCache()
     this.listenTo(this.collection, "add", function(model){
       this.append(model)
