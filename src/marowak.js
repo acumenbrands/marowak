@@ -43,6 +43,9 @@ Marowak.CollectionView = Backbone.View.extend({
     this.listenTo(this.collection, "remove", function(model){
       this.render()
     })
+    this.listenTo(this.collection, "reset", function(){
+      this.render()
+    })
   },
 
   append: function(model) {
