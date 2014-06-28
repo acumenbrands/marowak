@@ -10,8 +10,8 @@ $(function(){
     tagName: "li",
     className: "item",
     render: function(){
-      this.el.innerText = this.model.get("name")
-      return this
+      this.el.innerText = this.model.get("name");
+      return this;
     }
   })
 
@@ -29,15 +29,15 @@ $(function(){
   })
 
   // Render a preexisting collection
-  document.body.appendChild(todoList.render().el)
+  document.body.appendChild(todoList.render().el);
 
   // Append new items without redrawing the whole thing
-  tasks.add({ "name": "idk" })
+  tasks.add({ "name": "idk" });
 
   // Append, then Remove an item
-  temporaryTask = new Backbone.Model({ "name": "lol"})
-  tasks.add(temporaryTask)
-  tasks.remove(temporaryTask)
+  temporaryTask = new Backbone.Model({ "name": "lol"});
+  tasks.add(temporaryTask);
+  tasks.remove(temporaryTask);
 
 })
 </script>
